@@ -1,0 +1,38 @@
+﻿@model cloudscribe.Pagination.Models.PagedResult<Tag>
+@{
+    ViewData["Title"] = "Home Page";
+    ViewData["Controller"] = "Home";
+    ViewData["Action"] = "Index";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Top najpopularniejszych tagów na StackOverfow</h1>
+
+    <partial name="_PaginationPartial" view-data="ViewData" model="Model" />
+
+    <div class="position_list">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" class="col-md-3">Nazwa</th>
+                    <th scope="col" class="col-md-3">Ilość wystąpień</th>
+                    <th scope="col" class="col-md-3">Procent wystąpień [%]</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tag in Model.Data)
+                {
+                    <tr>
+                        <td>@tag.name</td>
+                        <td>@tag.count</td>
+                        <td>@tag.percentageOccur</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <partial name="_PaginationPartial" view-data="ViewData" model="Model" />
+
+    </div>
+
+</div>
